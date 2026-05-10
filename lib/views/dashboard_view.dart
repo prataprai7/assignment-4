@@ -30,7 +30,7 @@ class DashboardView extends StatelessWidget {
             icon: const Icon(Icons.people),
             label: const Text('Employee screen'),
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.red,
               foregroundColor: Colors.white,
               padding: const EdgeInsets.symmetric(vertical: 14),
               shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(12)),
@@ -42,7 +42,7 @@ class DashboardView extends StatelessWidget {
           ElevatedButton.icon(icon:  const Icon(Icons.grid_view),
           label: const Text('Gride View Screen'),
           style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.blue,
             foregroundColor: Colors.white,
             padding: const EdgeInsets.symmetric(vertical: 14),
             shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(12)),

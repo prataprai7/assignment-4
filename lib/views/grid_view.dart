@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 const List<Map<String, String>> gridItems = [
-  {'name':"Pratap rai", 'init':'PR'},
-  {'name':"Salman Khan", 'init':'SK'},
-  {'name':"Katrina Kaif", 'init':'KK'},
-  {'name':"Hari Rijal", 'init':'HR'},
-  {'name':"Sahid Kapoor", 'init':'SKK'},
-  {'name':"Amanda Roy", 'init':'AR'},
-  {'name':"Nancy Jo", 'init':'NJ'},
-  {'name':"Flower Bake", 'init':'FB'},
-  {'name':"Rose W", 'init':'RW'},
+  {'name':"Pratap Rai", 'image':'assets/images/employee1.jpg'},
+  {'name':"Salman Khan", 'image':'assets/images/employee2.jpg'},
+  {'name':"Katrina Kaif", 'image':'assets/images/employee3.jpg'},
+  {'name':"Hari Rijal", 'image':'assets/images/employee4.jpg'},
+  {'name':"Sahid Kapoor", 'image':'assets/images/employee5.jpg'},
+  {'name':"Amanda Roy", 'image':'assets/images/employee6.jpg'},
+  {'name':"Nancy Jo", 'image':'assets/images/employee7.jpg'},
+  {'name':"Flower Bake", 'image':'assets/images/employee8.jpg'},
+  {'name':"Rose W", 'image':'assets/images/employee9.jpg'},
 ];
 
 class GridScreen extends StatelessWidget {
@@ -18,7 +18,11 @@ class GridScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: Colors.grey,
+      appBar: AppBar(
+        title: const Text('Employee Grid View'),
+        centerTitle: true,
+      ),
       body: Padding(padding: 
       const EdgeInsets.all(12),
       child: GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,
@@ -34,11 +38,8 @@ class GridScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             CircleAvatar(
-              backgroundColor: Colors.blue.shade100,
-              child: Text(
-                gridItems[i]['init']!,
-                style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold),
-              ),
+              radius: 30,
+              backgroundImage: AssetImage(gridItems[i]['image']!),
             ),
             const SizedBox(height: 8,),
             Text(

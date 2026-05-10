@@ -20,10 +20,37 @@ class _EmployeeDataViewState extends State<EmployeeDataView> {
   final _passCtrl = TextEditingController();
   bool _obscure = true;
 
+final List<Map<String, String>> _employees =[];
+void _saveEmployee(){
+  if(_formKey.currentState!.validate()){
+    setState(() {
+      _employees.add({
+        'id': _idCtrl.text,
+        'name': _nameCtrl.text,
+        'gender': _genderCtrl.text,
+        'department': _deptCtrl.text,
+        'username': _userCtrl.text,
+        'password': _passCtrl.text,
+      });
+    });
+    _idCtrl.clear();
+    _nameCtrl.clear();
+    _genderCtrl.clear();
+    _deptCtrl.clear();
+    _userCtrl.clear();
+    _passCtrl.clear();
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Employee Saved')),
+    );
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue,
+      appBar: AppBar(title: const Text('Employee Screen'),),
+      backgroundColor: Colors.blueGrey,
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -53,31 +80,27 @@ class _EmployeeDataViewState extends State<EmployeeDataView> {
               Padding(padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
+                backgroundColor: Colors.blueAccent,
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 14),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(12)),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               ),
-              onPressed: (){
-                if(_formKey.currentState!.validate()){
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Employee saved')),
-                  );
-                }
-              },
-              child: const Text('Saved Employee'),
+             onPressed: _saveEmployee,
+              child: const Text('Save Employee'),
               ),),
               const Divider(height: 32,),
               const Text('Employee List', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
               const SizedBox(height: 8),
-              ...employees.map((e)=> Card(
+              ..._employees.map((e)=> Card(
                 color: const Color(0xFFF5F5F5),
                 margin: const EdgeInsets.symmetric(vertical: 4),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                 child: ListTile(
                   leading: const Icon(Icons.person, color: Colors.grey),
-                  title: Text(e.fullName, style: const TextStyle(fontWeight: FontWeight.bold)),
-                  subtitle: Text('${e.employeeId} . ${e.gender} . ${e.department}\nUser: ${e.username}'),
+                  title: Text(e['name']!, style: const TextStyle(fontWeight: FontWeight.bold),),
+                  subtitle: Text(
+                    '${e['id']}. ${e['gender']} . ${e['department']}\nUser: ${e['username']}',
+                  ),
                   isThreeLine: true,
                 ),
               ),),
